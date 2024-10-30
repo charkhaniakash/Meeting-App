@@ -20,9 +20,9 @@ const MobileView = () => {
   const pathName = usePathname();
 
   return (
-    <section className="w-full max-w-[200px]">
+    <section className="w-full max-w-[200px] sm:hidden ">
       <Sheet>
-        <SheetTrigger asChild>
+        <SheetTrigger asChild> 
           <Image
             className="sm:hidden cursor-pointer"
             src="/icons/hamburger.svg"
