@@ -48,13 +48,13 @@ const MobileView = () => {
             <div className="">
               <SheetClose asChild>
                 <section className="flex flex-col pt-10 gap-4">
-                  {sideBarLinks.map((link) => {
+                  {sideBarLinks.map((link ,i) => {
                     const isActive =
                       pathName === link.route ||
                       pathName.startsWith(`${link.route}/`);
 
                     return (
-                      <SheetClose asChild>
+                      <SheetClose asChild key={i}>
                         <Link
                           href={link.route}
                           key={link.label}
