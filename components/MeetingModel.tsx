@@ -35,6 +35,7 @@ const MeetingModel = ({
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="flex w-full bg-dark-1 border-none flex-col text-white">
+      <DialogTitle></DialogTitle>
         <div className="flex flex-col gap-6">
           {image && (
             <div className="flex justify-center">
