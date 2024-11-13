@@ -11,15 +11,18 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 
-interface MeetingMoodalProps {
+interface MeetingModalProps {
   isOpen: boolean;
-  buttonText: string;
   onClose: () => void;
-  handleClick: () => void;
   title: string;
   className?: string;
-  image?:string;
-  children?: ReactNode
+  children?: ReactNode;
+  handleClick?: () => void;
+  buttonText?: string;
+  instantMeeting?: boolean;
+  image?: string;
+  buttonClassName?: string;
+  buttonIcon?: string;
 }
 
 const MeetingModel = ({
@@ -30,22 +33,39 @@ const MeetingModel = ({
   title,
   image,
   className,
-  children
-}: MeetingMoodalProps) => {
+  children,
+  buttonIcon,
+}: MeetingModalProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="flex w-full bg-dark-1 border-none flex-col text-white">
-      <DialogTitle></DialogTitle>
+        <DialogTitle></DialogTitle>
         <div className="flex flex-col gap-6">
           {image && (
             <div className="flex justify-center">
-              <Image src={image} width={20} alt="img" height={20} />
+              <Image src={image} alt="checked" width={72} height={72} />
             </div>
           )}
-          <h1 className={cn('text-center font-bold text-2xl' ,className)}>{title}</h1>
+          <h1 className={cn("text-center font-bold text-2xl", className)}>
+            {title}
+          </h1>
           {children}
-          <Button onClick={handleClick} className="bg-blue-1 focus-visible:ring-0 focus-visible:ring-offset-0">
-            {buttonText || 'Schedule Meeting'}
+          <Button
+            className={
+              "bg-blue-1 focus-visible:ring-0 focus-visible:ring-offset-0"
+            }
+            onClick={handleClick}
+          >
+            {buttonIcon && (
+              <Image
+                src={buttonIcon}
+                alt="button icon"
+                width={13}
+                height={13}
+              />
+            )}{" "}
+            &nbsp;
+            {buttonText || "Schedule Meeting"}
           </Button>
         </div>
       </DialogContent>
