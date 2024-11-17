@@ -7,7 +7,7 @@ interface HomecardProps {
   className: string;
   src: string;
   title: string;
-  content: string;
+  description: string;
   handleClick:()=>void
 }
 
@@ -15,7 +15,7 @@ const HomeCard = ({
   className,
   src,
   title,
-  content,
+  description,
   handleClick,
 }: HomecardProps) => {
   return (
@@ -31,7 +31,7 @@ const HomeCard = ({
       </div>
       <div>
         <h2 className="text-2xl font-bold">{title}</h2>
-        <p>{content}</p>
+        <p>{description}</p>
       </div>
     </div>
   );

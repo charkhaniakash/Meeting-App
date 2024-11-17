@@ -9,6 +9,7 @@ import { useUser } from "@clerk/nextjs";
 import { useToast } from "@/hooks/use-toast";
 import { Textarea } from "./ui/textarea";
 import ReactDatePicker from "react-datepicker";
+import { Input } from "./ui/input";
 
 const initialValues = {
   dateTime: new Date(),
@@ -79,28 +80,28 @@ const MeetingTypeList = () => {
         className="bg-orange-1"
         src="/icons/add-meeting.svg"
         title="New Meeting"
-        content="Setup a new recording"
+        description="Setup a new recording"
       />
       <HomeCard
         handleClick={() => setMeetingState("isJoiningMeeting")}
         className="bg-blue-1"
         src="/icons/join-meeting.svg"
         title="Join Meeting"
-        content="via invitation link"
+        description="via invitation link"
       />
       <HomeCard
         handleClick={() => setMeetingState("isScheduleMeeting")}
         className="bg-purple-1"
         src="/icons/schedule.svg"
         title="Schedule Meeting"
-        content="Plan your meeting"
+        description="Plan your meeting"
       />
       <HomeCard
-        handleClick={() => setMeetingState("isJoiningMeeting")}
+        handleClick={() => router.push('/recordings')}
         className="bg-yellow-1"
         src="/icons/recordings.svg"
         title="View Recordings"
-        content="Meeting recordings"
+        description="Meeting recordings"
       />
 
       {!callDetails ? (
@@ -163,6 +164,17 @@ const MeetingTypeList = () => {
         title="Start an Instant Meeting"
         image=""
       />
+      <MeetingModel
+        isOpen={meetingState === "isJoiningMeeting"}
+        buttonText="Join Meeting"
+        onClose={() => setMeetingState(undefined)}
+        handleClick={()=>router.push(values.link)}
+        className="text-center"
+        title="Start an Instant Meeting"
+        image=""
+      >
+        <Input placeholder="Meeting link" className="border-none bg-dark-3" onChange={(e)=>setValues({...values , link:e.target.value})}/>
+      </MeetingModel>
     </section>
   );
 };
